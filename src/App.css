@@ -68,10 +68,11 @@ nav {
   translate: -50% -50%;
 }
 
-nav ul li a.active {
+.active span {
   border-bottom: 2px solid var(--accent-color);
   color: var(--accent-color);
 }
+
 
 .socials {
   display: flex;
