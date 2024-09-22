@@ -1,16 +1,19 @@
 import React from "react";
-import Hero from "./components/Hero.tsx";
-import Header from "./components/Header.tsx";
-import "./App.css"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Hero from "./components/Hero";
+import Header from "./components/Header";
+import Podcasts from "./pages/Podcasts";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
-      <>
-        <Header />
-        <main>
-          <Hero />
-        </main>
-      </>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/podcasts" element={<Podcasts />} />
+      </Routes>
+    </Router>
   );
 };
 

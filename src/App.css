@@ -151,3 +151,61 @@ html::-webkit-scrollbar {
 .hero .left a:hover {
   color: #f8f8f8;
 }
+
+/* Ensure the parent container uses Flexbox */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Adjust as needed */
+  text-align: center;
+}
+
+/* Optional: Ensure the category and pod-container are centered */
+.category {
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+}
+
+.pod-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem; /* Adjust as needed */
+}
+
+/* src/App.css */
+.audio-player {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.audio-player img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.audio-player h3 {
+    margin: 0 10px 0 0;
+    font-size: 16px;
+}
+
+.audio-player button {
+    margin-right: 10px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 2.5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #007bff;
+}

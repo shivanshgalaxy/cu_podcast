@@ -1,22 +1,23 @@
 import React from "react";
-import SocialLinks from "./SocialLinks.tsx";
-import "../App.css"
+import { Link } from "react-router-dom";
+import SocialLinks from "./SocialLinks";
+import "../App.css";
 
 const Header: React.FC = () => {
-    return (
-        <header>
-            <h2>Deep Dive Podcast</h2>
-            <nav>
-                <ul>
-                    <li><a href="./index.html" className="active">Home</a></li>
-                    <li><a href="./podcasts.html">Podcasts</a></li>
-                    <li><a href="./our-team.html">Our Team</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <SocialLinks />
-        </header>
-    );
+  return (
+    <header>
+      <h2>Deep Dive Podcast</h2>
+      <nav>
+        <ul>
+          <li><Link to="/" className="active">Home</Link></li>
+          <li><Link to="/podcasts">Podcasts</Link></li>
+          <li><Link to="/">Our Team</Link></li>
+          <li><Link to="/">Contact</Link></li>
+        </ul>
+      </nav>
+      <SocialLinks />
+    </header>
+  );
 };
 
 export default Header;
