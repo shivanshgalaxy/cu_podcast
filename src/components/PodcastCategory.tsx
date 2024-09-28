@@ -13,9 +13,10 @@ interface Podcast {
 interface PodcastCategoryProps {
     category: string;
     podcasts: Podcast[];
+    onPodcastSelect: (podcast: Podcast) => void;  // New prop to handle podcast selection
 }
 
-const PodcastCategory: React.FC<PodcastCategoryProps> = ({ category, podcasts }) => {
+const PodcastCategory: React.FC<PodcastCategoryProps> = ({ category, podcasts, onPodcastSelect }) => {
     return (
         <div className="category">
             <h2>{category}</h2>
@@ -23,12 +24,8 @@ const PodcastCategory: React.FC<PodcastCategoryProps> = ({ category, podcasts })
                 {podcasts.map((podcast, index) => (
                     <PodcastCard
                         key={index}
-                        imgSrc={podcast.imgSrc}
-                        title={podcast.title}
-                        description={podcast.description}
-                        date={podcast.date}
-                        duration={podcast.duration}
-                        audioSrc={podcast.audioSrc}
+                        podcast={podcast}
+                        onClick={() => onPodcastSelect(podcast)}  // Pass the selected podcast up
                     />
                 ))}
             </div>

@@ -1,48 +1,26 @@
-// src/components/PodcastCard.tsx
-import React, { useRef } from 'react';
-import { useAudio } from '../context/AudioContext';
+import React from 'react';
 
-interface PodcastCardProps {
+interface Podcast {
     imgSrc: string;
     title: string;
     description: string;
     date: string;
     duration: string;
-    audioSrc: string;
 }
 
-const PodcastCard: React.FC<PodcastCardProps> = ({ imgSrc, title, description, date, duration, audioSrc }) => {
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const { currentAudio, setCurrentAudio } = useAudio();
+interface PodcastCardProps {
+    podcast: Podcast;
+    onClick: () => void;  // Add onClick prop to trigger podcast selection
+}
 
-    const handleCardClick = () => {
-        if (audioRef.current) {
-            if (currentAudio === audioRef.current) {
-                if (!audioRef.current.paused) {
-                    audioRef.current.pause();
-                    setCurrentAudio(null);
-                } else {
-                    audioRef.current.play();
-                }
-            } else {
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0;
-                }
-                setCurrentAudio(audioRef.current);
-                audioRef.current.play();
-            }
-        }
-    };
-
+const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, onClick }) => {
     return (
-        <div className="podcast-card" onClick={handleCardClick}>
-            <img src={imgSrc} alt={title} />
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <span>{date} </span>
-            <span>{duration}</span>
-            <audio ref={audioRef} src={audioSrc} data-img-src={imgSrc} data-title={title} />
+        <div className="podcast-card" onClick={onClick}>
+            <img src={podcast.imgSrc} alt={podcast.title} />
+            <h3>{podcast.title}</h3>
+            <p>{podcast.description}</p>
+            <span>{podcast.date}</span>
+            <span>{podcast.duration}</span>
         </div>
     );
 };

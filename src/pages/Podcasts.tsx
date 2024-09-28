@@ -1,12 +1,22 @@
-// src/pages/Podcasts.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import PodcastCategory from '../components/PodcastCategory';
-import { AudioProvider } from '../context/AudioContext';
-import AudioPlayer from '../components/AudioPlayer';
 import '../App.css';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+
+interface Podcast {
+    imgSrc: string;
+    title: string;
+    description: string;
+    date: string;
+    duration: string;
+    audioSrc: string;
+}
 
 const Podcasts: React.FC = () => {
-    const dataSciencePodcasts = [
+    const [currentPodcast, setCurrentPodcast] = useState<Podcast | null>(null);
+
+    const dataSciencePodcasts: Podcast[] = [
         {
             imgSrc: "https://i.iheart.com/v3/catalog/podcast/138780510?ops=fit(480%2C480)",
             title: "Federated Learning",
@@ -27,15 +37,27 @@ const Podcasts: React.FC = () => {
     ];
 
     return (
-        <AudioProvider>
-            <main>
-                <div className="container">
-                    <h1>Our Podcasts</h1>
-                    <PodcastCategory category="Data Science" podcasts={dataSciencePodcasts} />
-                    <AudioPlayer />
-                </div>
-            </main>
-        </AudioProvider>
+        <main>
+            <div className="container">
+                <h1>Our Podcasts</h1>
+                <PodcastCategory
+                    category="Data Science"
+                    podcasts={dataSciencePodcasts}
+                    onPodcastSelect={setCurrentPodcast}
+                />
+                {currentPodcast && (
+                    <div className="audio-player-container">
+                        <AudioPlayer
+                            src={currentPodcast.audioSrc}
+                            autoPlay
+                            customAdditionalControls={[]}
+                            customVolumeControls={[]}
+                            showJumpControls={false}
+                        />
+                    </div>
+                )}
+            </div>
+        </main>
     );
 };
 
